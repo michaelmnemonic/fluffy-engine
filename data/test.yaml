@@ -1,0 +1,11 @@
+# Application settings
+app:
+  name: myapp # the name of the app
+  version: 1.0
+
+# List of users
+users:
+  - name: Alice
+    role: admin # has full access
+  - name: Bob
+    role: user
