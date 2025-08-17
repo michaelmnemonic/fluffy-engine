@@ -53,5 +53,16 @@ def main():
     else:
         print("No inline comment for 'version'")
 
+    # modify a value
+    test['app']['version'] = 2.0
+
+    # add a value with description
+    test['app'].insert(1, 'description', 'My cool app')
+    test['app'].yaml_add_eol_comment("short description", key='description')
+
+    # dump yaml
+    with open("data/test_modified.yaml", "w") as f:
+        yaml.dump(test, f)
+
 if __name__ == "__main__":
     main()
