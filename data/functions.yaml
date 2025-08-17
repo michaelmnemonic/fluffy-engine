@@ -1,0 +1,14 @@
+functions:
+  func1:
+    name: Function 1
+    desc: Do something  # inline comment
+  # Block comment
+  func2:
+    name: Function 2
+    desc: Do something else
+  
+  # Block comment
+
+  func3:
+    name: Function 3
+    desc: Do something else

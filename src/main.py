@@ -1,4 +1,5 @@
 from ruamel.yaml import YAML
+from ruamel.yaml.comments import CommentedMap
 
 def main():
     yaml = YAML()
@@ -63,6 +64,32 @@ def main():
     # dump yaml
     with open("data/test_modified.yaml", "w") as f:
         yaml.dump(test, f)
+
+    ###############
+
+    yaml = YAML(typ="rt")
+
+    with open("data/functions.yaml") as f:
+        functions_yaml = yaml.load(f)
+
+    functions = functions_yaml['functions']
+
+    for func_name, func_data in functions.items():
+        out_filename = f"{func_name}.yaml"
+        
+        # Create a new CommentedMap with top-level 'function'
+        single_func_map = CommentedMap()
+        
+        # Wrap the function under 'function' key
+        single_func_map['function'] = CommentedMap()
+        single_func_map['function'][func_name] = func_data
+
+        
+        # Dump to separate file
+        with open("data/" + out_filename, "w") as f:
+            yaml.dump(single_func_map, f)
+        
+        print(f"Wrote {out_filename}")
 
 if __name__ == "__main__":
     main()
