@@ -29,5 +29,29 @@ def main():
             if token:
                 print("Document-level comment:", token.value.strip())
 
+    # name_comments is a list of 4 slots, representing different comment positions
+    # for that key in ruamel.yaml’s internal structure:
+    #
+    # Index  Meaning
+    # 0      Comment before the key (block comment directly above the key)
+    # 1      Comment after the key but before the value (rarely used)
+    # 2      End-of-line comment (inline comment on the same line as key/value)
+    # 3      Comment after the value (trailing comment after a block value)
+
+
+    # Check inline comment for 'name' key
+    name_comments = test['app'].ca.items.get('name')  # returns a list
+    if name_comments and name_comments[2]:
+        print("Inline comment for 'name':", name_comments[2].value.strip())
+    else:
+        print("No inline comment for 'name'")
+
+    # Check inline comment for 'version' key
+    version_comments = test['app'].ca.items.get('version')
+    if version_comments and version_comments[2]:
+        print("Inline comment for 'version':", version_comments[2].value.strip())
+    else:
+        print("No inline comment for 'version'")
+
 if __name__ == "__main__":
     main()
