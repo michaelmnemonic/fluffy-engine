@@ -24,6 +24,7 @@
           python313
           ruff
           python313Packages.ruamel-yaml
+          python313Packages.python-lsp-server
 
           # nix
           nil
